@@ -9,7 +9,7 @@ http://python-ev3dev.readthedocs.io/en/latest/
 Someones efforts to help provide examples just like the `/examples` folder:<br>
 http://ev3python.com
 
-**TODO: 1.**
+**DONE: 1.**
 From left to right where your team is sitting now assign each person a number.<br>
 The person farthest to the left is team member #1, on their right is team member #2,
 on their right is team member #3, and if you have a 4th person they are team member #4.
@@ -18,12 +18,11 @@ team repository. Conflicts in git can be resolved, but it's easier to just avoid
 
 The subfolders m1, m2, m3, and m4 that are within this `/sandbox` folder are all identical.
 - Team member #1 (Jabari-Aman Delemore) will work all of the TODOs in the m1 folder
-<<<<<<< Updated upstream
 - Team member #2 (Will Detterman) will work all of the TODOs in the m2 folder
 - Team member #3 (Jeremy Roy) will work all of the TODOs in the m3 folder
-- Team member #4 (fill in your own name here) will work all of the TODOs in the m4 folder
 
-**TODO: 2.**
+
+**DONE: 2.**
 Fill in your name above then do a VCS -> Commit.. -> Commit and Push.
 As others fill in their names do a VCS -> Update project.
 After all names are in, then team member #1 can remove unused rows if needed.
