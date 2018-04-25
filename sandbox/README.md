@@ -18,8 +18,13 @@ team repository. Conflicts in git can be resolved, but it's easier to just avoid
 
 The subfolders m1, m2, m3, and m4 that are within this `/sandbox` folder are all identical.
 - Team member #1 (Jabari-Aman Delemore) will work all of the TODOs in the m1 folder
+<<<<<<< Updated upstream
 - Team member #2 (Will Detterman) will work all of the TODOs in the m2 folder
 - Team member #3 (fill in your own name here) will work all of the TODOs in the m3 folder
+=======
+- Team member #2 (fill in your own name here) will work all of the TODOs in the m2 folder
+- Team member #3 (Jeremy Roy) will work all of the TODOs in the m3 folder
+>>>>>>> Stashed changes
 - Team member #4 (fill in your own name here) will work all of the TODOs in the m4 folder
 
 **TODO: 2.**
