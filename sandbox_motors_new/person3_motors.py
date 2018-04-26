@@ -1,7 +1,7 @@
 """
 Functions for TURNING the robot LEFT and RIGHT.
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and Jeremy Roy.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # TODO: 2. Implment turn_left_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
@@ -11,6 +11,7 @@ Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
 
 import ev3dev.ev3 as ev3
 import time
+import math
 
 
 def test_turn_left_turn_right():
@@ -27,7 +28,11 @@ def test_turn_left_turn_right():
       3. Same as #2, but runs turn_left_by_encoders.
       4. Same as #1, 2, 3, but tests the turn_right functions.
     """
-
+    time_s = 1
+    while time_s != 0:
+        right_speed = int(input('enter speed for right motor:'))
+        time_s = int(input('enter seconds to spin:'))
+        right_motor.stop(stop_action = "brake")
 
 def turn_left_seconds(seconds, speed, stop_action):
     """
@@ -35,6 +40,9 @@ def turn_left_seconds(seconds, speed, stop_action):
     where speed is between -100 (full speed turn_right) and 100 (full speed turn_left).
     Uses the given stop_action.
     """
+    right_motor.run_forever(speed_sp = x)
+    time.sleep(y)
+    right_motor.stop()
 
 
 def turn_left_by_time(degrees, speed, stop_action):
