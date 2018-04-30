@@ -38,11 +38,11 @@ def test_spin_left_spin_right():
     #spin_left_seconds(2.3, 20, "brake")
     #spin_right_seconds(4, 50, "brake")
 
-    spin_left_by_time(90, 25, "brake")
-    spin_left_by_time(90, 50, 'brake')
+    #spin_left_by_time(90, 25, "brake")
+    #spin_left_by_time(90, 50, 'brake')
 
-    spin_right_by_time(90, 25, 'brake')
-    spin_right_by_time(90, 50, 'brake')
+    #spin_right_by_time(90, 25, 'brake')
+    #spin_right_by_time(90, 50, 'brake')
 
     spin_left_by_encoders(90, 25, 'brake')
 
@@ -96,7 +96,7 @@ def spin_left_by_encoders(degrees, speed, stop_action):
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
 
-    left_motor.run_to_rel_pos(position_sp=(degrees*10), speed_sp=(speed*-8))
+    left_motor.run_to_rel_pos(position_sp=(degrees*10), speed_sp=(speed* -8))
     right_motor.run_to_rel_pos(position_sp=(degrees*10), speed_sp=(speed*8))
 
 
