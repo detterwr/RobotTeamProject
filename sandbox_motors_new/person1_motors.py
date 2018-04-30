@@ -1,7 +1,7 @@
 """
 Functions for moving the robot FORWARD and BACKWARD.
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and Jabari-Aman Delemore.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # TODO: 2. Implment forward_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
@@ -14,6 +14,13 @@ import time
 
 
 def test_forward_backward():
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    assert left_motor.connected
+    assert right_motor.connected
+
+
     """
     Tests the forward and backward functions, as follows:
       1. Repeatedly:
@@ -27,14 +34,27 @@ def test_forward_backward():
       3. Same as #2, but runs forward_by_encoders.
       4. Same as #1, 2, 3, but tests the BACKWARD functions.
     """
-
-
+    time_s = 1  # Any value other than 0.
+    while time_s != 0:
+        left_sp = int(input("Enter a speed for the left motor (0 to 900 dps): "))
+        right_sp = int(input("Enter a speed for the right motor (0 to 900 dps): "))
+        time_s = int(input("Enter a time to drive (seconds): "))
+        left_motor.run_forever(speed_sp=left_sp)
+        right_motor.run_forever(speed_sp=right_sp)
+        time.sleep(time_s)
+        left_motor.stop()
+        right_motor.stop(stop_action="brake")
 def forward_seconds(seconds, speed, stop_action):
     """
     Makes the robot move forward for the given number of seconds at the given speed,
     where speed is between -100 (full speed backward) and 100 (full speed forward).
     Uses the given stop_action.
     """
+    left_motor.run_forever(speed_sp = speed * 8, stop_action = stop_action)
+    right_motor.run_forever(speed_sp = speed * 8, stop_action =stop_action)
+    time.sleep(seconds)
+    left_motor.stop()
+    right_motor.stop()
 
 
 def forward_by_time(inches, speed, stop_action):
