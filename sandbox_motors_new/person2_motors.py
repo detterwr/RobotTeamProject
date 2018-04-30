@@ -35,8 +35,14 @@ def test_spin_left_spin_right():
     assert left_motor.connected
     assert right_motor.connected
 
-    spin_left_seconds(4, 50, "brake")
+    #spin_left_seconds(2.3, 20, "brake")
+    #spin_right_seconds(4, 50, "brake")
 
+    spin_left_by_time(90, 25, "brake")
+    spin_left_by_time(90, 50, 'brake')
+
+    spin_right_by_time(90, 25, 'brake')
+    spin_right_by_time(90, 50, 'brake')
 
 def spin_left_seconds(seconds, speed, stop_action):
     """
@@ -71,6 +77,11 @@ def spin_left_by_time(degrees, speed, stop_action):
     """
 
 
+    time = abs(degrees/speed*0.53)
+    spin_left_seconds(time, speed, stop_action)
+
+
+
 def spin_left_by_encoders(degrees, speed, stop_action):
     """
     Makes the robot spin in place left the given number of degrees at the given speed,
@@ -91,6 +102,7 @@ def spin_right_seconds(seconds, speed, stop_action):
 def spin_right_by_time(degrees, speed, stop_action):
     """ Calls spin_left_by_time with negative speeds to achieve spin_right motion. """
 
+    spin_left_by_time(degrees, (speed*-1), stop_action)
 
 def spin_right_by_encoders(degrees, speed, stop_action):
     """ Calls spin_left_by_encoders with negative speeds to achieve spin_right motion. """
