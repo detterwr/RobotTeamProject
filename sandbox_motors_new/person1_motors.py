@@ -33,9 +33,10 @@ def test_forward_backward():
     assert left_motor.connected
     assert right_motor.connected
 
-    # forward_seconds(5, 100, 'brake')
-    # backward_seconds(5, 100, 'brake')
+    forward_seconds(5, 100, 'brake')
+    backward_seconds(5, 100, 'brake')
     forward_by_time(4, 100, 'brake')
+    backward_by_time(4, 100, 'brake')
 def forward_seconds(seconds, speed, stop_action):
     """
     Makes the robot move forward for the given number of seconds at the given speed,
@@ -94,7 +95,9 @@ def backward_by_time(inches, speed, stop_action):
     """ Calls forward_by_time with negative speeds to achieve backward motion. """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
-
+    time = 2 * (360 * inches)
+    left_motor.run_timed(speed_sp=-speed, time_sp=time)
+    right_motor.run_timed(speed_sp=-speed, time_sp=time)
 def backward_by_encoders(inches, speed, stop_action):
     """ Calls forward_by_encoders with negative speeds to achieve backward motion. """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
