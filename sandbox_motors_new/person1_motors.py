@@ -33,7 +33,10 @@ def test_forward_backward():
     assert left_motor.connected
     assert right_motor.connected
 
-    forward_seconds(10, 500, 'brake')
+    forward_seconds(5, 100, 'brake')
+    backward_seconds(5, 100, 'brake')
+    forward_by_time(4, 100, 'brake')
+    backward_by_time(4, 100, 'brake')
 def forward_seconds(seconds, speed, stop_action):
     """
     Makes the robot move forward for the given number of seconds at the given speed,
@@ -42,8 +45,8 @@ def forward_seconds(seconds, speed, stop_action):
     """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
-    left_motor.run_forever(speed_sp = speed * 8, stop_action = stop_action)
-    right_motor.run_forever(speed_sp = speed * 8, stop_action =stop_action)
+    left_motor.run_forever(speed_sp=(speed * 8))
+    right_motor.run_forever(speed_sp=(speed * 8))
     time.sleep(seconds)
     left_motor.stop()
     right_motor.stop()
@@ -61,6 +64,9 @@ def forward_by_time(inches, speed, stop_action):
     """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    time = 2 * (360 * inches)
+    left_motor.run_timed(speed_sp=speed, time_sp=time)
+    right_motor.run_timed(speed_sp=speed, time_sp=time)
 
 def forward_by_encoders(inches, speed, stop_action):
     """
@@ -72,17 +78,26 @@ def forward_by_encoders(inches, speed, stop_action):
     """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
-
+    left_motor.run_to_rel_pos(position_sp=inches, speed_sp=speed)
+    right_motor.run_to_rel_pos(position_sp=inches, speed_sp=speed)
+    left_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    right_motor.wait_while(ev3.Motor.STATE_RUNNING)
 def backward_seconds(seconds, speed, stop_action):
     """ Calls forward_seconds with negative speeds to achieve backward motion. """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
-
+    left_motor.run_forever(speed_sp=-(speed * 8))
+    right_motor.run_forever(speed_sp=-(speed * 8))
+    time.sleep(seconds)
+    left_motor.stop()
+    right_motor.stop()
 def backward_by_time(inches, speed, stop_action):
     """ Calls forward_by_time with negative speeds to achieve backward motion. """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
-
+    time = 2 * (360 * inches)
+    left_motor.run_timed(speed_sp=-speed, time_sp=time)
+    right_motor.run_timed(speed_sp=-speed, time_sp=time)
 def backward_by_encoders(inches, speed, stop_action):
     """ Calls forward_by_encoders with negative speeds to achieve backward motion. """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
