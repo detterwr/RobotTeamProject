@@ -1,7 +1,7 @@
 """
 Functions for SPINNING the robot LEFT and RIGHT.
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and Will Detterman.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # TODO: 2. Implment spin_left_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
@@ -11,7 +11,7 @@ Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
 
 
 import ev3dev.ev3 as ev3
-import time
+import time as time
 
 
 def test_spin_left_spin_right():
@@ -29,6 +29,22 @@ def test_spin_left_spin_right():
       4. Same as #1, 2, 3, but tests the spin_right functions.
     """
 
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    assert left_motor.connected
+    assert right_motor.connected
+
+    #spin_left_seconds(2.3, 20, "brake")
+    #spin_right_seconds(4, 50, "brake")
+
+    #spin_left_by_time(90, 25, "brake")
+    #spin_left_by_time(90, 50, 'brake')
+
+    #spin_right_by_time(90, 25, 'brake')
+    #spin_right_by_time(90, 50, 'brake')
+
+    spin_left_by_encoders(90, 25, 'brake')
 
 def spin_left_seconds(seconds, speed, stop_action):
     """
@@ -36,6 +52,19 @@ def spin_left_seconds(seconds, speed, stop_action):
     where speed is between -100 (full speed spin_right) and 100 (full speed spin_left).
     Uses the given stop_action.
     """
+
+
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    left_motor.run_forever(speed_sp=(-8*speed), stop_action=stop_action)
+    right_motor.run_forever(speed_sp=(8*speed), stop_action=stop_action)
+
+    time.sleep(seconds)
+
+    left_motor.stop()
+    right_motor.stop()
+
 
 
 def spin_left_by_time(degrees, speed, stop_action):
@@ -50,6 +79,11 @@ def spin_left_by_time(degrees, speed, stop_action):
     """
 
 
+    time = abs(degrees/speed*0.53)
+    spin_left_seconds(time, speed, stop_action)
+
+
+
 def spin_left_by_encoders(degrees, speed, stop_action):
     """
     Makes the robot spin in place left the given number of degrees at the given speed,
@@ -59,14 +93,25 @@ def spin_left_by_encoders(degrees, speed, stop_action):
       2. Move until the computed number of degrees is reached.
     """
 
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    left_motor.run_to_rel_pos(position_sp=(degrees*10), speed_sp=(speed* -8))
+    right_motor.run_to_rel_pos(position_sp=(degrees*10), speed_sp=(speed*8))
+
+
 
 def spin_right_seconds(seconds, speed, stop_action):
     """ Calls spin_left_seconds with negative speeds to achieve spin_right motion. """
+
+    spin_left_seconds(seconds, (speed*-1), stop_action)
+
 
 
 def spin_right_by_time(degrees, speed, stop_action):
     """ Calls spin_left_by_time with negative speeds to achieve spin_right motion. """
 
+    spin_left_by_time(degrees, (speed*-1), stop_action)
 
 def spin_right_by_encoders(degrees, speed, stop_action):
     """ Calls spin_left_by_encoders with negative speeds to achieve spin_right motion. """
