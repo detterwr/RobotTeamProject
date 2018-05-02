@@ -29,10 +29,11 @@ def test_turn_left_turn_right():
       4. Same as #1, 2, 3, but tests the turn_right functions.
     """
     time_s = 1
+    assert right_motor.connected
     while time_s != 0:
         right_speed = int(input('enter speed for right motor:'))
         time_s = int(input('enter seconds to spin:'))
-        right_motor.stop(stop_action = "brake")
+        right_motor.stop(stop_action = "coast")
 
 def turn_left_seconds(seconds, speed, stop_action):
     """
