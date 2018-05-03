@@ -32,13 +32,9 @@ def test_turn_left_turn_right():
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     assert right_motor.connected
     assert left_motor.connected
-    while time_s != 0:
-        time_s = int(input('enter seconds to spin:'))
-        right_motor.stop_action = ev3.Motor.STOP_ACTION_COAST
-        right_motor.speed_sp = int(input('enter motor speed'))
-        right_motor.run_timed()
-        ev3.Sound.Speak('dad')
-
+    time_sp=1
+    while time_sp != 0:
+        right_motor.run_timed(speed_sp = int(input("enter motor speed")), time_sp = input("enter time for motor to run"), stop_action=ev3.STOP_ACTION_BRAKE)
 
 def turn_left_seconds(seconds, speed, stop_action):
     """
