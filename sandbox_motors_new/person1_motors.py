@@ -32,13 +32,16 @@ def test_forward_backward():
 
     assert left_motor.connected
     assert right_motor.connected
-
-    forward_seconds(5, 100, 'brake')
-    backward_seconds(5, 100, 'brake')
-    forward_by_time(4, 100, 'brake')
-    backward_by_time(4, 100, 'brake')
-    forward_by_encoders(1440, 100, 'brake')
-    backward_by_encoders(1440, 100, 'brake')
+    speed_sp = int(input('Input the spped of the motors:'))
+    time_s = int(input('Input time for motors to run:'))
+    position_sp = int(input('distance for robot to travel:'))
+    forward_seconds(time_s, speed_sp, 'brake')
+    backward_seconds(time_s, speed_sp, 'brake')
+    forward_by_time(position_sp, speed_sp, 'brake')
+    backward_by_time(position_sp, speed_sp, 'brake')
+    ev3.Sound.beep().wait()
+    forward_by_encoders(position_sp, speed_sp, 'brake')
+    backward_by_encoders(position_sp, speed_sp, 'brake')
     ev3.Sound.beep().wait()
 def forward_seconds(seconds, speed, stop_action):
     """
@@ -67,7 +70,7 @@ def forward_by_time(inches, speed, stop_action):
     """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
-    time = 2 * (360 * inches)
+    time = (((3.14*inches)/360)*speed)
     left_motor.run_timed(speed_sp=speed, time_sp=time)
     right_motor.run_timed(speed_sp=speed, time_sp=time)
 
