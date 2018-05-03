@@ -28,6 +28,8 @@ def test_turn_left_turn_right():
       3. Same as #2, but runs turn_left_by_encoders.
       4. Same as #1, 2, 3, but tests the turn_right functions.
     """
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     time_s = 1
     assert right_motor.connected
     assert left_motor.connected
