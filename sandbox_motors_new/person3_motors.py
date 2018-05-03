@@ -36,7 +36,7 @@ def test_turn_left_turn_right():
         time_s = int(input('enter seconds to spin:'))
         right_motor.stop_action = ev3.Motor.STOP_ACTION_COAST
         right_motor.speed_sp = int(input('enter motor speed'))
-        right_motor.run_timed(int(input('enter time for motor to run')))
+        right_motor.run_timed()
         ev3.Sound.Speak('dad')
 
 
