@@ -30,7 +30,6 @@ def test_turn_left_turn_right():
     """
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
-    time_s = 1
     assert right_motor.connected
     assert left_motor.connected
     while time_s != 0:
