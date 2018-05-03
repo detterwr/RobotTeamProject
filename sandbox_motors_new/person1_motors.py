@@ -3,7 +3,7 @@ Functions for moving the robot FORWARD and BACKWARD.
 Authors: David Fisher, David Mutchler and Jabari-Aman Delemore.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-# TODO: 2. Implment forward_seconds, then the relevant part of the test function.
+# DONE: 2. Implment forward_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
 #   Then repeat for forward_by_time.
 #   Then repeat for forward_by_encoders.
@@ -37,8 +37,9 @@ def test_forward_backward():
     backward_seconds(5, 100, 'brake')
     forward_by_time(4, 100, 'brake')
     backward_by_time(4, 100, 'brake')
-    forward_by_encoders(4, 500, 'brake')
-    backward_by_encoders(4, 500, 'brake')
+    forward_by_encoders(1440, 100, 'brake')
+    backward_by_encoders(1440, 100, 'brake')
+    ev3.Sound.beep().wait()
 def forward_seconds(seconds, speed, stop_action):
     """
     Makes the robot move forward for the given number of seconds at the given speed,
