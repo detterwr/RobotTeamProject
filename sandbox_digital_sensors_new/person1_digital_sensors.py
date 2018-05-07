@@ -159,12 +159,14 @@ def wait_for_press():
     """
     touch_sensor = ev3.TouchSensor()
     assert touch_sensor
-    
+    while True:
+        if touch_sensor.is_pressed:
+            break
 
 
 
     # -------------------------------------------------------------------------
-    # TODO: 4.  Implement and test this function.
+    # DONE: 4.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
@@ -233,6 +235,7 @@ def show_images(list_of_images):
     Type hints:
       :type list_of_images: []
     """
+
 
 
 # -----------------------------------------------------------------------------
