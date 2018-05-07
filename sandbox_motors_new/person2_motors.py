@@ -3,7 +3,7 @@ Functions for SPINNING the robot LEFT and RIGHT.
 Authors: David Fisher, David Mutchler and Will Detterman.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-# TODO: 2. Implment spin_left_seconds, then the relevant part of the test function.
+# TODO: 2. Implement spin_left_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
 #   Then repeat for spin_left_by_time.
 #   Then repeat for spin_left_by_encoders.
@@ -44,7 +44,26 @@ def test_spin_left_spin_right():
     #spin_right_by_time(90, 25, 'brake')
     #spin_right_by_time(90, 50, 'brake')
 
-    spin_left_by_encoders(90, 25, 'brake')
+    #spin_left_by_encoders(180, 25, 'brake')
+    #spin_right_by_encoders(180, 25, 'brake')
+
+    #speed_sp = 20
+    #time_sp = 2
+    #stop_action = 'brake'
+
+    while True:
+
+        if time_s == 0:
+            break
+        print('-Spin left seconds-')
+        speed_sp = int(input('Speed: '))
+        time_s = int(input('Seconds to run: '))
+        #stop_action = input('Stop action: ')
+
+        spin_left_seconds(time_s, speed_sp, 'brake')
+
+
+
 
 def spin_left_seconds(seconds, speed, stop_action):
     """
@@ -96,8 +115,8 @@ def spin_left_by_encoders(degrees, speed, stop_action):
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
 
-    left_motor.run_to_rel_pos(position_sp=(degrees*-10), speed_sp=(speed* -8))
-    right_motor.run_to_rel_pos(position_sp=(degrees*10), speed_sp=(speed*8))
+    left_motor.run_to_rel_pos(position_sp=(degrees*-5), speed_sp=(speed* -8))
+    right_motor.run_to_rel_pos(position_sp=(degrees*5), speed_sp=(speed*8))
 
 
 
@@ -115,6 +134,6 @@ def spin_right_by_time(degrees, speed, stop_action):
 
 def spin_right_by_encoders(degrees, speed, stop_action):
     """ Calls spin_left_by_encoders with negative speeds to achieve spin_right motion. """
-
+    spin_left_by_encoders(-1*degrees, -1*speed, stop_action)
 
 test_spin_left_spin_right()
