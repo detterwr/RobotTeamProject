@@ -32,7 +32,7 @@ def test_forward_backward():
 
     assert left_motor.connected
     assert right_motor.connected
-    speed_sp = int(input('Input the spped of the motors:'))
+    speed_sp = int(input('Input the speed of the motors:'))
     time_s = int(input('Input time for motors to run:'))
     position_sp = int(input('distance for robot to travel:'))
     forward_seconds(time_s, speed_sp, 'brake')
