@@ -33,6 +33,8 @@ def main():
     """ Calls the   TEST   functions in this module. """
     # Uncomment these tests as you proceed through this module.
 
+   # assert ev3.RemoteControl
+
     run_test_buttons_on_ir_beacon()
     # run_test_wait_for_press_on_ir_beacon_button()
     # run_test_make_sounds()
@@ -121,7 +123,7 @@ def print_state_of_blue_up_button_on_ir_beacon(n, seconds_per_print):
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
-    rc1 = ev3.RemoteControl(1)
+    rc1 = ev3.RemoteControl(channel=1)
     for _ in range(n):
         time.sleep(seconds_per_print)
         print(rc1.blue_up)
@@ -194,6 +196,10 @@ def wait_for_RED_DOWN_button_press():
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
+    rc2 = ev3.RemoteControl(channel=1)
+    while True:
+        if rc2.red_down == True:
+            break
 
 def run_test_make_sounds():
     """ Tests the   make_sounds   function. """

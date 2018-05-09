@@ -34,8 +34,8 @@ def main():
     # Uncomment these tests as you proceed through this module.
 
     #run_test_buttons_on_brick()
-    run_test_wait_for_press_on_brick_button()
-    # run_test_show_leds()
+    #run_test_wait_for_press_on_brick_button()
+    run_test_show_leds()
 
 
 def run_test_buttons_on_brick():
@@ -219,6 +219,21 @@ def show_leds():
        -- DOWN button:  Both LEDs turn off (i.e., to BLACK).
        -- BACKSPACE button: The program breaks out of the loop.
     """
+
+    btn = ev3.Button()
+    while True:
+        if btn.left == True:
+            ev3.Leds.green_left
+        if btn.right == True:
+            ev3.Leds.red_right
+        if btn.up == True:
+            ev3.Leds.LEFT.GREEN
+        if btn.down == True:
+            ev3.Leds.BLACK
+        if btn.backspace == True:
+            break
+
+
 
 
 # -----------------------------------------------------------------------------
