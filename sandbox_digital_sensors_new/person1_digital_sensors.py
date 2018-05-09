@@ -237,12 +237,11 @@ def show_images(list_of_images):
     """
     touch_sensor = ev3.TouchSensor()
     assert touch_sensor
-    screen = ev3.Screen()
-    assert screen
+    lcd_screen = ev3.Screen()
     for k in range(len(list_of_images)):
         if touch_sensor.is_pressed:
-            screen.image.paste(list_of_images[k], (0, 0))
-            screen.update()
+            lcd_screen.image.paste(list_of_images[k], (0, 0))
+            lcd_screen.update()
 
 
 
