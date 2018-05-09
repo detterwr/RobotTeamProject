@@ -30,13 +30,13 @@ class Snatch3r(object):
         assert self.right_motor.connected
 
     def forward(self, inches, speed=100, stop_action='brake'):
-        K = 4.5
-        degrees_for_motor = K * inches /speed
-        self.left_motor.run_to_rel_pos(position_sp = inches,
-                                       speed_sp = degrees_for_motor,
-                                       stop_action = stop_action)
-        self.right_motor.run_to_rel_pos(position_sp = inches,
-                                        speed_sp = degrees_for_motor,
-                                        stop_action = stop_action)
+        K = 360 / 4.5
+        degrees_for_motor = K * inches
+        self.left_motor.run_to_rel_pos(position_sp=degrees_for_motor,
+                                       speed_sp=8*speed,
+                                       stop_action=stop_action)
+        self.right_motor.run_to_rel_pos(position_sp=degrees_for_motor,
+                                        speed_sp=8*speed,
+                                        stop_action=stop_action)
         self.left_motor.wait_while("running")
         self.right_motor.wait_while("running")
