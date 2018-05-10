@@ -59,8 +59,8 @@ def main():
         robot.backwards(inches_target, speed_deg_per_second)
         ev3.Sound.beep().wait()  # Fun little beep
 
-    print("Goodbye!")
-    ev3.Sound.speak("Goodbye").wait()
+    print("Hasta Lavista,....Ba be!")
+    ev3.Sound.speak("Hasta Lavista,....Ba be").wait()
 
 
 # ----------------------------------------------------------------------

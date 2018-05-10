@@ -43,10 +43,10 @@ class Snatch3r(object):
     def backwards(self, inches, speed=100, stop_action='brake'):
         K = 360 / 4.5
         degrees_for_motor = K * inches
-        self.left_motor.run_to_rel_pos(position_sp=degrees_for_motor,
+        self.left_motor.run_to_rel_pos(position_sp=-degrees_for_motor,
                                        speed_sp=-(8 * speed),
                                        stop_action=stop_action)
-        self.right_motor.run_to_rel_pos(position_sp=degrees_for_motor,
+        self.right_motor.run_to_rel_pos(position_sp=-degrees_for_motor,
                                         speed_sp=-(8 * speed),
                                         stop_action=stop_action)
         self.left_motor.wait_while("running")
