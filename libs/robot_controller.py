@@ -40,7 +40,7 @@ class Snatch3r(object):
                                         stop_action=stop_action)
         self.left_motor.wait_while("running")
         self.right_motor.wait_while("running")
-    def backward(self, inches, speed=100, stop_action='brake'):
+    def backwards(self, inches, speed=100, stop_action='brake'):
         K = 360 / 4.5
         degrees_for_motor = K * inches
         self.left_motor.run_to_rel_pos(position_sp=degrees_for_motor,
@@ -65,12 +65,14 @@ class Snatch3r(object):
                                         speed_sp=8 * speed,
                                         stop_action=stop_action)
     def spin_left(self, degrees, speed=100, stop_action='brake'):
-
+        self.left_motor.run_to_rel_pos(position_sp=(degrees * -5), speed_sp=(speed * -8))
+        self.right_motor.run_to_rel_pos(position_sp=(degrees * 5), speed_sp=(speed * 8))
 
 
 
     def spin_right(self, degrees, speed=100, stop_action='brake'):
-
+        self.left_motor.run_to_rel_pos(position_sp=(degrees * -5), speed_sp=-(speed * -8))
+        self.right_motor.run_to_rel_pos(position_sp=(degrees * 5), speed_sp=-(speed * 8))
 
 
 
