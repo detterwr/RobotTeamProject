@@ -30,8 +30,10 @@ def test_turn_left_turn_right():
     """
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+
     assert right_motor.connected
     assert left_motor.connected
+
     speed_sp = int(input('Input the speed of the motors:'))
     time_s = int(input('Input time for motors to run:'))
     position_sp = int(input('distance for robot to travel:'))

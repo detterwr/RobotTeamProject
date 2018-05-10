@@ -51,16 +51,10 @@ def test_spin_left_spin_right():
     #time_sp = 2
     #stop_action = 'brake'
 
-    while True:
-
-        if time_s == 0:
-            break
-        print('-Spin left seconds-')
-        speed_sp = int(input('Speed: '))
-        time_s = int(input('Seconds to run: '))
-        #stop_action = input('Stop action: ')
-
-        spin_left_seconds(time_s, speed_sp, 'brake')
+    speed_sp = int(input('Input the speed of the motors:'))
+    time_s = int(input('Input time for motors to run:'))
+    position_sp = int(input('distance for robot to travel:'))
+    spin_left_seconds(time_s, speed_sp, 'brake')
 
 
 
