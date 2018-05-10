@@ -19,7 +19,7 @@ Authors: David Fisher and Jabari-Aman Delemore.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 
-# TODO: 2. Select one team member to open libs/mqtt_remote_method_calls.py and complete the TO DO that is in that file.
+# DONE: 2. Select one team member to open libs/mqtt_remote_method_calls.py and complete the TO DO that is in that file.
 # After making that change, they should commit their work and all other team members should do a VCS -> Update
 # After all team members see that file changed you can move on to the next TO DO
 # Also someone should update the libs/mqtt_remote_method_calls.py file on the robot too (at some point before m3).
