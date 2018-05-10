@@ -58,3 +58,20 @@ class Snatch3r(object):
                                         speed_sp=8*speed,
                                         stop_action=stop_action)
         self.right_motor.wait_while("running")
+    def right(self, degrees, speed=100, stop_action='brake'):
+        K = 360 / 4.5
+        degree_for_motor = K * degrees
+        self.left_motor.run_to_rel_pos(position_sp=degree_for_motor,
+                                        speed_sp=8 * speed,
+                                        stop_action=stop_action)
+    def spin_left(self, degrees, speed=100, stop_action='brake'):
+
+
+
+
+    def spin_right(self, degrees, speed=100, stop_action='brake'):
+
+
+
+
+        
