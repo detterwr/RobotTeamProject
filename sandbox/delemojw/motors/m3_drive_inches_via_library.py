@@ -60,7 +60,7 @@ def main():
         ev3.Sound.beep().wait()  # Fun little beep
 
     print("Hasta Lavista,....Be be!")
-    ev3.Sound.speak("aastaa La veesta,....Bey bee").wait()
+    ev3.Sound.speak("aastaa  La veesta,....Bey bee").wait()
 
 
 # ----------------------------------------------------------------------
