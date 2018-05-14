@@ -76,7 +76,29 @@ class Snatch3r(object):
 
 
     def go_forward(self, lspeed, rspeed):
-        while True:
-            self.left_motor.run_forever(speed_sp=lspeed)
-            self.right_motor.run_forever(speed_sp=rspeed)
+        self.left_motor.run_forever(speed_sp=lspeed)
+        self.right_motor.run_forever(speed_sp=rspeed)
 
+
+    def go_backward(self, lspeed, rspeed):
+        self.left_motor.run_forever(speed_sp=-1*lspeed)
+        self.right_motor.run_forever(speed_sp=-1*rspeed)
+
+
+    def go_right(self, lspeed, rspeed):
+        self.left_motor.run_forever(speed_sp=lspeed)
+        self.right_motor.run_forever(speed_sp=-1*rspeed)
+
+
+    def go_left(self, lspeed, rspeed):
+        self.left_motor.run_forever(speed_sp=-1*lspeed)
+        self.right_motor.run_forever(speed_sp=rspeed)
+
+    def loop_forever(self):
+        # This is a convenience method that I don't really recommend for most programs other than m5.
+        #   This method is only useful if the only input to the robot is coming via mqtt.
+        #   MQTT messages will still call methods, but no other input or output happens.
+        # This method is given here since the concept might be confusing.
+        self.running = True
+        while self.running:
+            time.sleep(0.1)
