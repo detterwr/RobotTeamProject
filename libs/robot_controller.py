@@ -76,7 +76,6 @@ class Snatch3r(object):
 
 
     def go_forward(self, lspeed, rspeed):
-        while True:
-            self.left_motor.run_forever(speed_sp=lspeed)
-            self.right_motor.run_forever(speed_sp=rspeed)
+        self.left_motor.run_forever(speed_sp=lspeed)
+        self.right_motor.run_forever(speed_sp=rspeed)
 
