@@ -110,7 +110,7 @@ def main():
 # Tkinter callbacks
 # ----------------------------------------------------------------------
 # TODO: 4. Implement the functions for the drive button callbacks.
-def forward(mqtt_client, left_speed_entry,right_speed_entry):
+def forward(mqtt_client, left_speed_entry, right_speed_entry):
     left_speed_entry.get()
     print(left_speed_entry.get())
     right_speed_entry.get()
