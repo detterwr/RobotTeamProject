@@ -41,6 +41,10 @@ def main():
     robot.loop_forever()  # Calls a function that has a while True: loop within it to avoid letting the program end.
 
 
+def loop_forever():
+    while True:
+        robo.go_forward()
+
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
