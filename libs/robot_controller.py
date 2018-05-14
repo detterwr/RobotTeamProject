@@ -75,4 +75,7 @@ class Snatch3r(object):
         self.right_motor.run_to_rel_pos(position_sp=(degrees * 5), speed_sp=-(speed * 8))
 
 
+    def go_forward(self, lspeed, rspeed):
+        self.left_motor.run_forever(speed_sp=lspeed)
+        self.right_motor.run_forever(speed_sp=rspeed)
 
