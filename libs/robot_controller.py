@@ -122,8 +122,7 @@ class Snatch3r(object):
     def arm_down(self):
         position = 0 * 360
         self.arm_motor.run_to_abs_pos(position_sp=position, speed_sp=400)
-        # self.arm_motor.wait(3)
-        time.sleep(7)
+        self.arm_motor.wait_while(ev3.Motor.STATE_RUNNING)
         ev3.Sound.beep().wait()
 
 
