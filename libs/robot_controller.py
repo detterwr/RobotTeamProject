@@ -25,10 +25,13 @@ class Snatch3r(object):
     def __init__(self):
         self.left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
         self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
-        
+        self.arm_motor = ev3.MediumMotor(ev3.OUTPUT_A)
+        self.touch_sensor = ev3.TouchSensor()
 
         assert self.left_motor.connected
         assert self.right_motor.connected
+        assert self.arm_motor.connected
+        assert  self.touch_sensor
 
     def forward(self, inches, speed=100, stop_action='brake'):
         K = 360 / 4.5
@@ -106,7 +109,20 @@ class Snatch3r(object):
         self.right_motor.run_forever(speed_sp=rspeed)
 
 
-    def arm_up(self, ):
+    def arm_up(self):
+        self.arm_motor.run_forever(time_sp=1, speed_sp=900)
+        while self.touch_sensor.is_pressed:
+            time.sleep(0.01)
+        self.arm_motor.stop()
+
+
+    def arm_down(self):
+        self.arm_motor.run_forever(time_sp=1, speed_sp=-900)
+        while self.touch_sensor.is_pressed:
+            time.sleep(0.01)
+        self.arm_motor.wait_while(ev3.Motor.STATE_HOLDING)
+        self.arm_motor.stop()
+
     def loop_forever(self):
         # This is a convenience method that I don't really recommend for most programs other than m5.
         #   This method is only useful if the only input to the robot is coming via mqtt.
