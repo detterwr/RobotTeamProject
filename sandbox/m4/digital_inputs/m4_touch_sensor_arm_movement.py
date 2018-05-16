@@ -31,16 +31,16 @@ def main():
         command_to_run = input("Enter c (for calibrate), u (for up), d (for down), or q (for quit): ")
         if command_to_run == 'c':
             print("Calibrate the arm")
-            print("TODO: 3 is to delete this print statement, uncomment the line below, and implement that function.")
-            # arm_calibration(arm_motor, touch_sensor)
+            #print("TODO: 3 is to delete this print statement, uncomment the line below, and implement that function.")
+            arm_calibration(arm_motor, touch_sensor)
         elif command_to_run == 'u':
             print("Move the arm to the up position")
-            print("TODO: 4 is to delete this print statement, uncomment the line below, and implement that function.")
-            # arm_up(arm_motor, touch_sensor)
+            #print("TODO: 4 is to delete this print statement, uncomment the line below, and implement that function.")
+            arm_up(arm_motor, touch_sensor)
         elif command_to_run == 'd':
             print("Move the arm to the down position")
-            print("TODO: 5 is to delete this print statement, uncomment the line below, and implement that function.")
-            # arm_down(arm_motor)
+            #print("TODO: 5 is to delete this print statement, uncomment the line below, and implement that function.")
+            arm_down(arm_motor)
         elif command_to_run == 'q':
             break
         else:
@@ -60,7 +60,7 @@ def arm_calibration(arm_motor, touch_sensor):
       :type arm_motor: ev3.MediumMotor
       :type touch_sensor: ev3.TouchSensor
     """
-    # TODO: 3. Implement the arm calibration movement by fixing the code below (it has many bugs).  It should to this:
+    # DONE: 3. Implement the arm calibration movement by fixing the code below (it has many bugs).  It should to this:
     #   Command the arm_motor to run forever in the positive direction at max speed.
     #   Create an infinite while loop that will block code execution until the touch sensor's is_pressed value is True.
     #     Within that loop sleep for 0.01 to avoid running code too fast.
@@ -74,9 +74,9 @@ def arm_calibration(arm_motor, touch_sensor):
 
     # Code that attempts to do this task but has MANY bugs (nearly 1 on every line).  Fix them!
     arm_motor.run_forever(speed_sp=100)
-    while not touch_sensor:
+    while touch_sensor.is_pressed():
         time.sleep(0.01)
-    arm_motor.stop(stop_action="coast")
+    arm_motor.stop()
 
     arm_revolutions_for_full_range = 14.2
     arm_motor.run_to_rel_pos(position_sp=-arm_revolutions_for_full_range)

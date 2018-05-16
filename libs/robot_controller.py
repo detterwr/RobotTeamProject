@@ -125,6 +125,8 @@ class Snatch3r(object):
         while True:
             if not self.touch_sensor.is_pressed:
                 time.sleep(0.01)
+            else:
+                break
         self.arm_motor.stop()
         ev3.Sound.beep().wait()
 
