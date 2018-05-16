@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-  This is your opportunity to work as a team on a mini-project.  You will need to handle the following actions.
+  This is your opportunity to work as a team on a mini-ev3_project.  You will need to handle the following actions.
 
   When your program starts it should say IR Remote, print instructions, and do a robot.arm_calibration()
 

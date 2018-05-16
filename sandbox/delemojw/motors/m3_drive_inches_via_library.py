@@ -9,7 +9,7 @@ Authors: David Fisher and Jabari-Aman Delemore.
 
 # DONE: 2. On your computer right click on the libs folder in PyCharm, select Mark Directory as... Sources Root
 #   That should fix the error on the import robot_controller as robo line below (expand the imports below)
-#   Marking that folder as a Source Root will allow any module in that folder to be used globally in this project.
+#   Marking that folder as a Source Root will allow any module in that folder to be used globally in this ev3_project.
 #   Note, when that folder is uploaded to the EV3, it wil be in the folder /home/robot/csse120/libs
 #   That folder path is special on your robot because it is set as the PYTHONPATH (done within the .bashrc file)
 #   Normally you can't just use a module in some random folder, but the libs folder has been setup special.
@@ -20,7 +20,7 @@ Authors: David Fisher and Jabari-Aman Delemore.
 # this module.
 #
 # Once the code has been tested and shown to work, then have that person commit their work.  All other team members need
-#  to do a VCS --> Update project...
+#  to do a VCS --> Update ev3_project...
 # Once the library is implemented each team member should be able to run their version of this code on the robot.
 
 # TODO: 4. Formally test your work. When you think you have the problem complete run these tests:
