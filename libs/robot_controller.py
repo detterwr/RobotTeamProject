@@ -110,7 +110,7 @@ class Snatch3r(object):
 
 
     def arm_up(self):
-        position = 14.2 *360
+        position = 14.2 * 360
         self.arm_motor.run_to_abs_pos(position_sp=position, speed_sp=900)
         while True:
             if self.touch_sensor.is_pressed:
@@ -120,7 +120,7 @@ class Snatch3r(object):
 
 
     def arm_down(self):
-        position = -14.7 * 360
+        position = 0 * 360
         self.arm_motor.run_to_abs_pos(position_sp=position, speed_sp=900)
         while True:
             if not self.touch_sensor.is_pressed:
