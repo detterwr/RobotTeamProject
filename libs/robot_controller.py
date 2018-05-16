@@ -121,14 +121,15 @@ class Snatch3r(object):
 
     def arm_down(self):
         position = 0 * 360
-        self.arm_motor.run_to_abs_pos(position_sp=position, speed_sp=900)
-        while True:
-            if not self.touch_sensor.is_pressed:
-                time.sleep(0.01)
-            else:
-                break
-        self.arm_motor.stop()
+        self.arm_motor.run_to_abs_pos(position_sp=position, speed_sp=400)
+        # self.arm_motor.wait(3)
+        time.sleep(7)
         ev3.Sound.beep().wait()
+
+
+    def shutdown(self):
+        ev3.Sound.speak("aastaa  La veesta,....Bey bee").wait()
+        self.running = False
 
 
     def loop_forever(self):
