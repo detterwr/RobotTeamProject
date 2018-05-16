@@ -131,7 +131,7 @@ def left(mqtt_client, left_speed_entry, right_speed_entry):
     right_speed_entry.get()
     print(right_speed_entry.get())
     print("I'm reving left!")
-    mqtt_client.send_message("go_left", (int(-(left_speed_entry.get())), int(right_speed_entry.get())))
+    mqtt_client.send_message("go_left", (int((left_speed_entry.get())), int(right_speed_entry.get())))
 
 def right(mqtt_client, left_speed_entry, right_speed_entry):
     left_speed_entry.get()
@@ -139,7 +139,7 @@ def right(mqtt_client, left_speed_entry, right_speed_entry):
     right_speed_entry.get()
     print(right_speed_entry.get())
     print("I'm reving right!")
-    mqtt_client.send_message("go_right", (int(left_speed_entry.get()), int(-(right_speed_entry.get()))))
+    mqtt_client.send_message("go_right", (int(left_speed_entry.get()), int((right_speed_entry.get()))))
 
 def stop(mqtt_client, left_speed_entry, right_speed_entry):
     left_speed_entry.get()
@@ -155,7 +155,7 @@ def backwards(mqtt_client, left_speed_entry, right_speed_entry):
     right_speed_entry.get()
     print(right_speed_entry.get())
     print("I'm backing up!")
-    mqtt_client.send_message("go_backwards", (int(-(left_speed_entry.get())), int(-(right_speed_entry.get()))))
+    mqtt_client.send_message("go_backward", (int((left_speed_entry.get())), int((right_speed_entry.get()))))
 
 
 # TODO: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!

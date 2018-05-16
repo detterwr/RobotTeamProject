@@ -25,6 +25,7 @@ class Snatch3r(object):
     def __init__(self):
         self.left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
         self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+        
 
         assert self.left_motor.connected
         assert self.right_motor.connected
@@ -81,19 +82,31 @@ class Snatch3r(object):
 
 
     def go_backward(self, lspeed, rspeed):
-        self.left_motor.run_forever(speed_sp=-1*lspeed)
-        self.right_motor.run_forever(speed_sp=-1*rspeed)
+        lspeed = (-1) * lspeed
+        rspeed = (-1 )* rspeed
+        self.left_motor.run_forever(speed_sp=lspeed)
+        self.right_motor.run_forever(speed_sp=rspeed)
 
 
     def go_right(self, lspeed, rspeed):
+        rspeed = (-1) * rspeed
         self.left_motor.run_forever(speed_sp=lspeed)
-        self.right_motor.run_forever(speed_sp=-1*rspeed)
+        self.right_motor.run_forever(speed_sp=rspeed)
 
 
     def go_left(self, lspeed, rspeed):
-        self.left_motor.run_forever(speed_sp=-1*lspeed)
+        lspeed = (-1) * lspeed
+        self.left_motor.run_forever(speed_sp=lspeed)
         self.right_motor.run_forever(speed_sp=rspeed)
 
+    def stop(self, lspeed, rspeed):
+        lspeed = 0
+        rspeed = 0
+        self.left_motor.run_forever(speed_sp=lspeed)
+        self.right_motor.run_forever(speed_sp=rspeed)
+
+
+    def arm_up(self, ):
     def loop_forever(self):
         # This is a convenience method that I don't really recommend for most programs other than m5.
         #   This method is only useful if the only input to the robot is coming via mqtt.
