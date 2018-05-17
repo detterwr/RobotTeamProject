@@ -93,6 +93,13 @@ def main():
     back_button['command'] = lambda: backwards(mqtt_client, left_speed_entry, right_speed_entry)
     root.bind('<Up>', lambda event: backwards(mqtt_client, left_speed_entry, right_speed_entry))
 
+
+    geese_button = ttk.Button(main_frame, text="Geese")
+    geese_button.grid(row=7, column=4)
+    #geese_button['command'] = lambda: print("Swans")
+    #geese_button['command'] = mqtt_client.send_message("ev3.Sound.speak",["Geese"])
+    geese_button['command'] = lambda: waterfowl(mqtt_client)
+
     up_button = ttk.Button(main_frame, text="Up")
     up_button.grid(row=5, column=0)
     up_button['command'] = lambda: send_up(mqtt_client)
@@ -112,10 +119,6 @@ def main():
     e_button.grid(row=6, column=2)
     e_button['command'] = (lambda: quit_program(mqtt_client, True))
 
-    geese_button = ttk.Button(main_frame, text="Geese")
-    geese_button.grid(row=7, column=4)
-    #geese_button['command'] = lambda: print("Swans")
-    geese_button['command'] = lambda: mqtt_client.send_message("ev3.Sound.speak",["Geese"])
 
     root.mainloop()
 
@@ -162,6 +165,10 @@ def backwards(mqtt_client, left_speed_entry, right_speed_entry):
     print(right_speed_entry.get())
     print("I'm backing up!")
     mqtt_client.send_message("go_backward", (int((left_speed_entry.get())), int((right_speed_entry.get()))))
+
+def waterfowl(mqtt_client):
+    print("geese")
+    mqtt_client.send_message("say_geese")
 
 
 # TODO: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!

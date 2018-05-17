@@ -131,6 +131,9 @@ class Snatch3r(object):
         ev3.Sound.speak("aastaa  La veesta,....Bey bee").wait()
         self.running = False
 
+    def say_geese(self):
+        ev3.Sound.beep().wait()
+
 
     def loop_forever(self):
         # This is a convenience method that I don't really recommend for most programs other than m5.
