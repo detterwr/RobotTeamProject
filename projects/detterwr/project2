@@ -119,6 +119,20 @@ def main():
     e_button.grid(row=6, column=2)
     e_button['command'] = (lambda: quit_program(mqtt_client, True))
 
+    #project buttons:
+    find_button = ttk.Button(main_frame, text="Find Object")
+    find_button.grid(row=8, column=0)
+    find_button['command'] = lambda: find(mqtt_client)
+
+
+    grab_button = ttk.Button(main_frame, text="Grab Object")
+    grab_button.grid(row=8, column=1)
+    grab_button['command'] = lambda: take(mqtt_client)
+
+    return_button = ttk.Button(main_frame, text="Return To Start")
+    return_button.grid(row=8, column=2)
+    return_button['command'] = lambda: gohome(mqtt_client)
+
 
     root.mainloop()
 
@@ -170,6 +184,23 @@ def waterfowl(mqtt_client):
     print("geese")
     mqtt_client.send_message("say_geese")
 
+#Project files:
+
+def find(mqtt_client):
+    print("Searching...")
+    mqtt_client.send_message("search")
+
+
+
+def take(mqtt_client):
+    print("Grabbing Object")
+    mqtt_client.send_message("grab")
+
+
+def gohome(mqtt_client):
+    print("Returning to start")
+    mqtt_client.send_message("home")
+
 
 # TODO: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!
 #
@@ -186,6 +217,10 @@ def send_up(mqtt_client):
 def send_down(mqtt_client):
     print("arm_down")
     mqtt_client.send_message("arm_down")
+
+def waterfowl(mqtt_client):
+   # print("geese")
+    mqtt_client.send_message("say_geese")
 
 
 # Quit and Exit button callbacks

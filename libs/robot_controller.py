@@ -136,7 +136,9 @@ class Snatch3r(object):
         self.running = False
 
     def say_geese(self):
-        ev3.Sound.beep().wait()
+        ev3.Sound.speak("geese").wait()
+
+#Jabari's Project
 
     def ball_finder(self):
         while True:
@@ -149,6 +151,9 @@ class Snatch3r(object):
                 self.right_motor.stop()
                 ev3.Sound.beep().wait()
                 break
+
+#Will's Project
+
 
     def loop_forever(self):
         # This is a convenience method that I don't really recommend for most programs other than m5.
