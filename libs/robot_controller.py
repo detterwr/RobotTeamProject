@@ -152,6 +152,9 @@ class Snatch3r(object):
                 ev3.Sound.beep().wait()
                 break
 
+
+    def say_goal(self):
+        ev3.Sound.speak("Gouaouaouaouaouaouaouaouaouaouaouaouaouaouaou al").wait()
 #Will's Project
 
 

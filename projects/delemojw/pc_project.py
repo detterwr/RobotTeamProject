@@ -77,6 +77,11 @@ def main():
     f_button.grid(row=7, column=2)
     f_button['command'] = (lambda: find_ball(mqtt_client))
 
+    # Say Goal
+    g_button = ttk.Button(main_frame, text="Goal")
+    g_button.grid(row=7, column=1)
+    g_button['command'] = (lambda: goal(mqtt_client))
+
     root.mainloop()
 
 
@@ -135,9 +140,17 @@ def send_down(mqtt_client):
     print("arm_down")
     mqtt_client.send_message("arm_down")
 
+
 def find_ball(mqtt_client):
     print("Finding Ball")
     mqtt_client.send_message("ball_finder")
+
+
+def goal(mqtt_client):
+    print("Score")
+    mqtt_client.send_message("say_goal")
+
+
 # Quit and Exit button callbacks
 def quit_program(mqtt_client, shutdown_ev3):
     if shutdown_ev3:
