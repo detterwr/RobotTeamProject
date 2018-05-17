@@ -154,6 +154,72 @@ class Snatch3r(object):
 
 #Will's Project
 
+    # def search(self):
+    #     closest_ir = 50
+    #     cur_pos = 0
+    #     closestpos = 0
+    #     for p in range(12):
+    #         if self.ir_sensor.proximity <= closest_ir:
+    #             ev3.Sound.speak("Update", str(self.ir_sensor.proximity)).wait()
+    #             closest_ir = self.ir_sensor.proximity
+    #             closestpos = cur_pos
+    #             cur_pos = cur_pos + 30
+    #             self.spin_right(30, 30)
+    #             self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    #         else:
+    #             ev3.Sound.speak(str(closest_ir))
+    #             cur_pos = cur_pos + 30
+    #             self.spin_right(30, 30)
+    #             self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    #
+    #     self.spin_right(closestpos, 20)
+    #     ev3.Sound.speak(str(closestpos)).wait()
+    #     return closestpos*30
+
+    #def grab(self):
+
+    map_angle = 0
+    map_dist = 0
+
+    def search(self):
+        current_pos = 0
+        closest_ir = self.ir_sensor.proximity
+        closest_pos = 0
+        for _ in range(13):
+            if self.ir_sensor.proximity <= closest_ir:
+                ev3.Sound.beep().wait()
+                closest_ir = self.ir_sensor.proximity
+                closest_pos = current_pos
+                ev3.Sound.speak("Updated").wait()
+                current_pos = current_pos + 25
+                self.spin_right(25,20)
+                self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+            else:
+                ev3.Sound.speak("No").wait()
+                current_pos = current_pos + 25
+                self.spin_right(25,20)
+                self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+        ev3.Sound.speak(str(closest_pos)).wait()
+        self.spin_left(closest_pos, 30)
+        map_angle = closest_pos
+
+    def grab(self):
+        distance = self.ir_sensor.proximity
+        ev3.Sound.beep().wait()
+        if distance > 50:
+            self.forward(10, 40)
+        else: self.forward(distance/5, 40)
+
+        self.arm_up()
+
+        map_dist = distance
+
+    def home(self):
+        self.backwards(self.map_dist, 40)
+        self.spin_right(self.map_angle, 40)
+
+
+
 
     def loop_forever(self):
         # This is a convenience method that I don't really recommend for most programs other than m5.
