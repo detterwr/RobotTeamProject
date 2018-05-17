@@ -27,11 +27,15 @@ class Snatch3r(object):
         self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
         self.arm_motor = ev3.MediumMotor(ev3.OUTPUT_A)
         self.touch_sensor = ev3.TouchSensor()
+        self.ir_sensor = ev3.InfraredSensor()
+        self.color = ev3.ColorSensor()
 
         assert self.left_motor.connected
         assert self.right_motor.connected
         assert self.arm_motor.connected
         assert  self.touch_sensor
+        assert self.ir_sensor
+        assert self.color
 
     def forward(self, inches, speed=100, stop_action='brake'):
         K = 360 / 4.5
@@ -134,6 +138,17 @@ class Snatch3r(object):
     def say_geese(self):
         ev3.Sound.beep().wait()
 
+    def ball_finder(self):
+        while True:
+            self.left_motor.run_forever(speed_sp=(100 * -8))
+            self.right_motor.run_forever(speed_sp=(100 * 8))
+            current_proximity = self.ir_sensor.proximity
+            print("IR Distance = {}".format(current_proximity))
+            if current_proximity <= 80:
+                self.left_motor.stop()
+                self.right_motor.stop()
+                ev3.Sound.beep().wait()
+                break
 
     def loop_forever(self):
         # This is a convenience method that I don't really recommend for most programs other than m5.
