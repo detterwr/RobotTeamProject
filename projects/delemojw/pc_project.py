@@ -96,7 +96,7 @@ def forward(mqtt_client, left_speed_entry, right_speed_entry):
     right_speed_entry.get()
     print(right_speed_entry.get())
     print("I'm reving up!")
-    mqtt_client.send_message("go_forward", (int(left_speed_entry.get()), int(right_speed_entry.get())))
+    mqtt_client.send_message("forward_to_goal", (int(left_speed_entry.get()), int(right_speed_entry.get())))
 
 
 def left(mqtt_client, left_speed_entry, right_speed_entry):
