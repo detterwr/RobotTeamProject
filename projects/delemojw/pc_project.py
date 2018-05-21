@@ -82,6 +82,10 @@ def main():
     g_button.grid(row=7, column=1)
     g_button['command'] = (lambda: goal(mqtt_client))
 
+    g_button = ttk.Button(main_frame, text="Obtain Ball")
+    g_button.grid(row=7, column=0)
+    g_button['command'] = (lambda: grab_ball(mqtt_client))
+
     root.mainloop()
 
 
@@ -149,6 +153,11 @@ def find_ball(mqtt_client):
 def goal(mqtt_client):
     print("Score")
     mqtt_client.send_message("say_goal")
+
+
+def grab_ball(mqtt_client):
+    print("Obtaining the ball.")
+    mqtt_client.send_message("ball_obtain")
 
 
 # Quit and Exit button callbacks

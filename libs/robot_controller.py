@@ -151,6 +151,44 @@ class Snatch3r(object):
                 self.right_motor.stop()
                 ev3.Sound.beep().wait()
                 break
+    def ball_obtain(self):
+        while True:
+            self.left_motor.run_forever(speed_sp=(100 * 8))
+            self.right_motor.run_forever(speed_sp=(100 * 8))
+            current_proximity = self.ir_sensor.proximity
+            print("IR Distance = {}".format(current_proximity))
+            if current_proximity <= 10:
+                self.left_motor.stop()
+                self.right_motor.stop()
+                ev3.Sound.beep().wait()
+                break
+
+    def foward_to_goal(self, lspeed, rspeed):
+        while True:
+            self.left_motor.run_forever(speed_sp=lspeed)
+            self.right_motor.run_forever(speed_sp=rspeed)
+            if self.color == ev3.ColorSensor.COLOR_RED:
+                self.right_motor.run_forever(speed_sp=rspeed)
+                self.left_motor.run_forever(speed_sp=0)
+                time.sleep(0.5)
+                self.right_motor.stop()
+                self.left_motor.stop()
+                self.right_motor.run_forever(speed_sp=0)
+                self.left_motor.run_forever(speed_sp=lspeed)
+                time.sleep(0.5)
+                self.right_motor.stop()
+                self.left_motor.stop()
+            elif self.color == ev3.ColorSensor.COLOR_YELLOW:
+                self.right_motor.run_forever(speed_sp=0)
+                self.left_motor.run_forever(speed_sp=lspeed)
+                time.sleep(0.5)
+                self.right_motor.stop()
+                self.left_motor.stop()
+                self.right_motor.run_forever(speed_sp=rspeed)
+                self.left_motor.run_forever(speed_sp=0)
+                time.sleep(0.5)
+                self.right_motor.stop()
+                self.left_motor.stop()
 
 
     def say_goal(self):
