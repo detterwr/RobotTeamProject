@@ -77,6 +77,15 @@ def main():
     f_button.grid(row=7, column=2)
     f_button['command'] = (lambda: find_ball(mqtt_client))
 
+    # Say Goal
+    g_button = ttk.Button(main_frame, text="Goal")
+    g_button.grid(row=7, column=1)
+    g_button['command'] = (lambda: goal(mqtt_client))
+
+    g_button = ttk.Button(main_frame, text="Obtain Ball")
+    g_button.grid(row=7, column=0)
+    g_button['command'] = (lambda: grab_ball(mqtt_client))
+
     root.mainloop()
 
 
@@ -87,7 +96,7 @@ def forward(mqtt_client, left_speed_entry, right_speed_entry):
     right_speed_entry.get()
     print(right_speed_entry.get())
     print("I'm reving up!")
-    mqtt_client.send_message("go_forward", (int(left_speed_entry.get()), int(right_speed_entry.get())))
+    mqtt_client.send_message("forward_to_goal", (int(left_speed_entry.get()), int(right_speed_entry.get())))
 
 
 def left(mqtt_client, left_speed_entry, right_speed_entry):
@@ -135,9 +144,22 @@ def send_down(mqtt_client):
     print("arm_down")
     mqtt_client.send_message("arm_down")
 
+
 def find_ball(mqtt_client):
     print("Finding Ball")
     mqtt_client.send_message("ball_finder")
+
+
+def goal(mqtt_client):
+    print("Score")
+    mqtt_client.send_message("say_goal")
+
+
+def grab_ball(mqtt_client):
+    print("Obtaining the ball.")
+    mqtt_client.send_message("ball_obtain")
+
+
 # Quit and Exit button callbacks
 def quit_program(mqtt_client, shutdown_ev3):
     if shutdown_ev3:
