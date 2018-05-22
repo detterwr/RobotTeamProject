@@ -185,38 +185,55 @@ class Snatch3r(object):
         current_pos = 0
         closest_ir = self.ir_sensor.proximity
         closest_pos = 0
-        for _ in range(13):
+
+        inc = 15
+        rep = int(340/inc)
+
+        for _ in range(rep):
             if self.ir_sensor.proximity <= closest_ir:
                 ev3.Sound.beep().wait()
                 closest_ir = self.ir_sensor.proximity
                 closest_pos = current_pos
-                ev3.Sound.speak("Updated").wait()
-                current_pos = current_pos + 25
-                self.spin_right(25,20)
+                ev3.Sound.beep().wait()
+                current_pos = current_pos + inc
+                self.spin_right(inc,20)
                 self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
             else:
-                ev3.Sound.speak("No").wait()
-                current_pos = current_pos + 25
-                self.spin_right(25,20)
+                #ev3.Sound.speak("No").wait()
+                current_pos = current_pos + inc
+                self.spin_right(inc,20)
                 self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
         ev3.Sound.speak(str(closest_pos)).wait()
-        self.spin_left(closest_pos, 30)
-        map_angle = closest_pos
+        if closest_pos > 170:
+            self.spin_right((-1*(340-closest_pos)),-30)
+        else:
+            self.spin_left(closest_pos, 30)
+
 
     def grab(self):
         distance = self.ir_sensor.proximity
         ev3.Sound.beep().wait()
         if distance > 50:
             self.forward(10, 40)
-        else: self.forward(distance/5, 40)
+            self.arm_up()
+            self.arm_motor.wait_while(ev3.Motor.STATE_RUNNING)
+            self.backwards(distance/5, 40)
+        else:
+            distance = distance/5
+            self.forward(distance, 40)
 
-        self.arm_up()
+            self.arm_up()
+            self.arm_motor.wait_while(ev3.Motor.STATE_RUNNING)
+            self.backwards(distance, 40)
+
+        btn = ev3.Button()
+        while True:
+            if btn.left:
+                self.arm_down()
+                break
 
         map_dist = distance
 
-    def home(self):
-        self.backwards(self.map_dist, 40)
-        self.spin_right(self.map_angle, 40)
 
 
 
