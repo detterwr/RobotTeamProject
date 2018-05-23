@@ -165,9 +165,11 @@ class Snatch3r(object):
 
     def forward_to_goal(self, lspeed, rspeed):
         while True:
+            current_color = self.color.color
+            print("color = {}".format(current_color))
             self.left_motor.run_forever(speed_sp=lspeed)
             self.right_motor.run_forever(speed_sp=rspeed)
-            if self.color.color() == ev3.ColorSensor.COLOR_RED:
+            if current_color == ev3.ColorSensor.COLOR_RED:
                 self.right_motor.run_forever(speed_sp=rspeed)
                 self.left_motor.run_forever(speed_sp=0)
                 time.sleep(1)
@@ -175,10 +177,10 @@ class Snatch3r(object):
                 self.left_motor.stop()
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=lspeed)
-                time.sleep(1)
+                time.sleep(1.5)
                 self.right_motor.stop()
                 self.left_motor.stop()
-            elif self.color.color() == ev3.ColorSensor.COLOR_YELLOW:
+            elif current_color == ev3.ColorSensor.COLOR_YELLOW:
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=lspeed)
                 time.sleep(1)
@@ -186,10 +188,12 @@ class Snatch3r(object):
                 self.left_motor.stop()
                 self.right_motor.run_forever(speed_sp=rspeed)
                 self.left_motor.run_forever(speed_sp=0)
-                time.sleep(1)
+                time.sleep(1.5)
                 self.right_motor.stop()
                 self.left_motor.stop()
-            if self.running == False:
+            elif current_color == ev3.ColorSensor.COLOR_BLUE:
+                self.right_motor.stop()
+                self.left_motor.stop()
                 break
 
 
