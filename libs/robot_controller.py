@@ -163,32 +163,34 @@ class Snatch3r(object):
                 ev3.Sound.beep().wait()
                 break
 
-    def foward_to_goal(self, lspeed, rspeed):
+    def forward_to_goal(self, lspeed, rspeed):
         while True:
             self.left_motor.run_forever(speed_sp=lspeed)
             self.right_motor.run_forever(speed_sp=rspeed)
-            if self.color == ev3.ColorSensor.COLOR_RED:
+            if self.color.color() == ev3.ColorSensor.COLOR_RED:
                 self.right_motor.run_forever(speed_sp=rspeed)
                 self.left_motor.run_forever(speed_sp=0)
-                time.sleep(0.5)
+                time.sleep(1)
                 self.right_motor.stop()
                 self.left_motor.stop()
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=lspeed)
-                time.sleep(0.5)
+                time.sleep(1)
                 self.right_motor.stop()
                 self.left_motor.stop()
-            elif self.color == ev3.ColorSensor.COLOR_YELLOW:
+            elif self.color.color() == ev3.ColorSensor.COLOR_YELLOW:
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=lspeed)
-                time.sleep(0.5)
+                time.sleep(1)
                 self.right_motor.stop()
                 self.left_motor.stop()
                 self.right_motor.run_forever(speed_sp=rspeed)
                 self.left_motor.run_forever(speed_sp=0)
-                time.sleep(0.5)
+                time.sleep(1)
                 self.right_motor.stop()
                 self.left_motor.stop()
+            if self.running == False:
+                break
 
 
     def say_goal(self):
